@@ -14,13 +14,15 @@ print(dat_kiso.shape)
 print(dat.shape)
 print(dat_mu.shape)
 
-latK = 35.794167#
-lonK = 137.628333# Kiso observatory
-hgtK = 1.130e3#
+# Kiso observatory
+latK = (35.0 + (47.0 + 50.28/60.0)/60.0 );
+lonK = (137.0 + (37.0 + 31.26/60.0)/60.0 );
+hgtK = 1168;
 
-latS = 34.8540#
-lonS = 136.1044# MU radar
-hgtS = 0.380e3#
+# MU radar
+latS = (34.0 + (51.0 + 14.50/60.0)/60.0 );
+lonS = (136.0 + (06.0 + 20.24/60.0)/60.0 );
+hgtS = 372.0#
 
 dat_conv = n.empty((dat.shape[0], 4))
 
@@ -110,4 +112,4 @@ for i in range(dat.shape[0]):
     print('{} of {} done'.format(i+1,dat.shape[0]))
 
 
-n.savetxt('tomoe_part.csv', tomoe_part)
+n.savetxt('data/tomoe_part.csv', tomoe_part)

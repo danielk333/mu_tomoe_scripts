@@ -11,7 +11,7 @@ tomoe_part = n.genfromtxt('data/tomoe_part.csv')
 dat = n.genfromtxt('data/kiso.csv', delimiter=',', skip_header = 1)
 dat_mu = n.genfromtxt('data/MU_orbit_data_20181023.txt', delimiter=' ')
 
-plot_n = [3]
+plot_n = [1,2,3]
 
 if 1 in plot_n:
     fig = plt.figure()
