@@ -95,18 +95,20 @@ for i in range(dat.shape[0]):
     tomoe_part[i, 6] = dat_mu[mu_id, 0]
     tomoe_part[i, 7] = rho[start_ind]
     tomoe_part[i, 8] = rho[end_ind]
+    
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    ax.plot(mu_set_kiso[0,:], mu_set_kiso[1,:], '.k', label='mu traj')
+    ax.plot([tomoe_start_mu[0], tomoe_end_mu[0]], [tomoe_start_mu[1], tomoe_end_mu[1]], 'xr', label='mu traj kiso part')
+    ax.plot([az0_kiso, az1_kiso], [el0_kiso, el1_kiso], 'or', label='kiso az-el')
+    ax.plot([az0_tomoe, az1_tomoe], [el0_tomoe, el1_tomoe], 'ob', label='tomoe az-el')
+    ax.plot([dat_kiso[mu_id,14], dat_kiso[mu_id,17]], [dat_kiso[mu_id,15], dat_kiso[mu_id,18]], 'xm', label='tomoe az-el send')
         
+        
+    plt.legend()
+    fig.savefig('img/events_overlay/overlap_{}'.format(i),bbox_inches='tight')
+    
     if verb:
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.plot(mu_set_kiso[0,:], mu_set_kiso[1,:], '.k', label='mu traj')
-        ax.plot([tomoe_start_mu[0], tomoe_end_mu[0]], [tomoe_start_mu[1], tomoe_end_mu[1]], 'xr', label='mu traj kiso part')
-        ax.plot([az0_kiso, az1_kiso], [el0_kiso, el1_kiso], 'or', label='kiso az-el')
-        ax.plot([az0_tomoe, az1_tomoe], [el0_tomoe, el1_tomoe], 'ob', label='tomoe az-el')
-        ax.plot([dat_kiso[mu_id,14], dat_kiso[mu_id,17]], [dat_kiso[mu_id,15], dat_kiso[mu_id,18]], 'xm', label='tomoe az-el send')
-        
-        
-        plt.legend()
         plt.show()
     
     print('{} of {} done'.format(i+1,dat.shape[0]))
