@@ -55,11 +55,13 @@ if 3 in plot_n:
     ax.hist(0.5*(tomoe_part[:,8] + tomoe_part[:,7]))
     ax.set_xlabel('midpoint fraction tomoe of mu')
 
+    fig.savefig('img/overlay_statistics1',bbox_inches='tight')
+
     fig = plt.figure()
     ax = fig.add_subplot(111)
     ax.hist(tomoe_part[:,8] - tomoe_part[:,7])
     ax.set_xlabel('reach fraction tomoe of mu')
 
-    fig.savefig('img/overlay_statistics',bbox_inches='tight')
+    fig.savefig('img/overlay_statistics2',bbox_inches='tight')
 
 plt.show()
