@@ -120,6 +120,35 @@ def rot_mat(a,b):
 
 	return R
 
+
+def rot_mat_z(theta):
+	R = np.zeros((3,3))
+	R[0,0] = np.cos(theta)
+	R[0,1] = -np.sin(theta)
+	R[1,0] = np.sin(theta)
+	R[1,1] = np.cos(theta)
+	R[2,2] = 1.0
+	return R
+
+def rot_mat_x(theta):
+	R = np.zeros((3,3))
+	R[1,1] = np.cos(theta)
+	R[1,2] = -np.sin(theta)
+	R[2,1] = np.sin(theta)
+	R[2,2] = np.cos(theta)
+	R[0,0] = 1.0
+	return R
+
+def rot_mat_y(theta):
+	R = np.zeros((3,3))
+	R[0,0] = np.cos(theta)
+	R[0,2] = np.sin(theta)
+	R[2,0] = -np.sin(theta)
+	R[2,2] = np.cos(theta)
+	R[1,1] = 1.0
+	return R
+
+
 def azel_to_azel_via_ecef(lat0,lon0,alt0,az,el,r,lat1,lon1,alt1, radians=False):
 	"""Transfer the spherical coordinates for a point relative location 0 on the earth to spherical coordinates relative location 1
 	
