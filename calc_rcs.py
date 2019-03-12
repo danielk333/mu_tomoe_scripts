@@ -10,17 +10,6 @@ from mu_conf import *
 from mu_gain import *
 
 
-def rcs(SNR, R, rx_T, G_tx, G_rx, wavelength, rx_bw, tx_power):
-    c1 = SNR*(4.0*n.pi)**3*R**4*const.k*rx_T*rx_bw
-    c2 = tx_power*G_tx*G_rx*wavelength**2
-    return c1/c2
-
-def MU_rcs(SNR, r, T_cos = 10000.0):
-    G = MU_gain(r)
-    rx_T = 3000.0 + T_cos
-    return rcs(SNR, n.linalg.norm(r), rx_T, G, G, lambda0, bw0, tx_P)
-
-
 if __name__ == '__main__':
 
     tomoe_part = n.genfromtxt('data/tomoe_part.csv')

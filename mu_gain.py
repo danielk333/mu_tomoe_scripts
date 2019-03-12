@@ -61,6 +61,28 @@ def plot_gain3d(res=200,min_el = 0.0):
     ax.set_title('Gain pattern MU', fontsize=28)
     plt.show()
 
+def SNR_to_RCS(SNR, R, rx_T, G_tx, G_rx, wavelength, rx_bw, tx_power):
+    c1 = (4.0*n.pi)**3*R**4*const.k*rx_T*rx_bw
+    c2 = tx_power*G_tx*G_rx*wavelength**2
+    return SNR*c1/c2
+
+def RCS_to_SNR(RCS, R, rx_T, G_tx, G_rx, wavelength, rx_bw, tx_power):
+    c1 = (4.0*n.pi)**3*R**4*const.k*rx_T*rx_bw
+    c2 = tx_power*G_tx*G_rx*wavelength**2
+    return RCS*c2/c1
+
+def MU_rcs(SNR, r, T_cos = 10000.0, G = None):
+    if G is None:
+        G = MU_gain(r)
+    rx_T = 3000.0 + T_cos
+    return SNR_to_RCS(SNR, n.linalg.norm(r), rx_T, G, G, lambda0, bw0, tx_P)
+
+def MU_snr(RCS, r, T_cos = 10000.0, G = None):
+    if G is None:
+        G = MU_gain(r)
+    rx_T = 3000.0 + T_cos
+    return RCS_to_SNR(RCS, n.linalg.norm(r), rx_T, G, G, lambda0, bw0, tx_P)
+
 
 if __name__=='__main__':
     pass
